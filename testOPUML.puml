@@ -1,0 +1,86 @@
+@startuml
+interface testOP.additionalInformation.Payable {
+~ void payTuition()
+}
+class testOP.additionalInformation.CollegeStudent {
+~ String collegeName
++ void payTuition()
+}
+class testOP.additionalInformation.Main {
++ {static} void main(String[])
+}
+interface testOP.testElement.Drivable {
+~ void drive()
+}
+abstract class testOP.testElement.Vehicle {
+~ String make
+~ {abstract}void start()
+}
+enum testOP.testElement.FuelType {
++  PETROL
++  DIESEL
++  ELECTRIC
+}
+class testOP.testElement.ElectricCar {
+~ int batteryLife
+~ void charge()
+~ void start()
+}
+class testOP.testElement.Main {
++ {static} void main(String[])
+}
+class testOP.testElement.Car {
+~ FuelType fuelType
+- int speed
++ String color
++ void accelerate()
++ void brake()
++ void drive()
+~ void start()
+}
+class testOP.additionalInformation.Student {
+- String name
++ int age
+# String id
++ void study()
+# void takeExam()
+- void sleep()
++ {static} void staticMethod()
++ String toString()
+}
+abstract class testOP.testConnection.Animal {
+~ void breathe()
+}
+interface testOP.testConnection.Eatable {
+~ void eat()
+}
+class testOP.testConnection.Mammal {
+}
+class testOP.testConnection.Human {
+~ Cat petCat
++ void eat()
+~ void ownCat(Cat)
+}
+class testOP.testConnection.Cat {
+~ void meow()
+}
+class testOP.testConnection.House {
+~ Room room
+}
+class testOP.testConnection.Room {
+~ void description()
+}
+class testOP.testConnection.Main {
++ {static} void main(String[])
+}
+
+
+testOP.additionalInformation.Payable <|.. testOP.additionalInformation.CollegeStudent
+testOP.additionalInformation.Student <|-- testOP.additionalInformation.CollegeStudent
+testOP.testElement.Car <|-- testOP.testElement.ElectricCar
+testOP.testElement.Drivable <|.. testOP.testElement.Car
+testOP.testElement.Vehicle <|-- testOP.testElement.Car
+testOP.testConnection.Animal <|-- testOP.testConnection.Mammal
+testOP.testConnection.Eatable <|.. testOP.testConnection.Human
+testOP.testConnection.Mammal <|-- testOP.testConnection.Human
+@enduml
