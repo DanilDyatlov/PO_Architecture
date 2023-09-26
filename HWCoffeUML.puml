@@ -1,0 +1,30 @@
+@startuml
+class HW.test.CoffeeDrinkProduct {
+- String name
+- double volume
+- double price
++ String getTypeName()
++ double getVolume()
++ double getPrice()
++ String toString()
+}
+class HW.test.CoffeeMachine {
+- List<CoffeeDrinkProduct> drinksList
+- double cash
++ CoffeeMachine addDrinks(CoffeeDrinkProduct)
++ CoffeeDrinkProduct findCoffeeProduct(String)
++ double getCash()
++ CoffeeDrinkProduct saleCoffee(String)
++ String toString()
+}
+class HW.test.HotDrinkType {
+- int temperature
++ String toString()
+}
+class HW.test.Main {
++ {static} void main(String[])
+}
+
+
+HW.test.CoffeeDrinkProduct <|-- HW.test.HotDrinkType
+@enduml

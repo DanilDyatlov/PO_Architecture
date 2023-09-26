@@ -1,0 +1,55 @@
+@startuml
+abstract class HW1.Amphibians {
++ String toString()
+}
+abstract class HW1.Animals {
+# String name
++ {abstract}String sound()
++ {abstract}String feed()
++ String toString()
+}
+abstract class HW1.Reptiles {
++ String toString()
+}
+class HW1.Frog {
++ String sound()
++ String feed()
++ int getSwimSpeed()
++ String toString()
+}
+class HW1.Snake {
++ String sound()
++ String feed()
++ int getSwimSpeed()
++ String toString()
+}
+interface HW1.Soundable {
+~ String sound()
+}
+interface HW1.SwimSpeed {
+~ int getSwimSpeed()
+}
+class HW1.Terrarium {
+- List<Animals> terrarium
++ Terrarium addAnimals(Animals)
+- List<Soundable> getSoundable()
++ String getSound()
++ List<SwimSpeed> swimmers()
++ SwimSpeed fastSwimmers()
++ String toString()
+}
+class HW1.Main {
++ {static} void main(String[])
+}
+
+
+HW1.Animals *-- HW1.Amphibians
+HW1.Soundable <|.. HW1.Animals
+HW1.Animals *-- HW1.Reptiles
+HW1.SwimSpeed <|.. HW1.Frog
+HW1.Soundable <|.. HW1.Frog
+HW1.Amphibians o-- HW1.Frog
+HW1.SwimSpeed <|.. HW1.Snake
+HW1.Soundable <|.. HW1.Snake
+HW1.Reptiles o-- HW1.Snake
+@enduml
