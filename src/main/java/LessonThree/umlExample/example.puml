@@ -1,0 +1,56 @@
+@startuml
+' Определение классов и интерфейсов
+class CalculatorPresenter {
+- View calculatorView
+- Model calculatorModel
++ void onCalculate(String operation, double a, double b)
++ void onClear()
+}
+
+class CalculatorModel {
++ double add(double a, double b)
++ double subtract(double a, double b)
++ double multiply(double a, double b)
++ double divide(double a, double b)
+}
+
+interface CalculatorView {
+~ void setObserver(ViewObserver)
+~ void updateResult(double result)
+~ void clearScreen()
+}
+
+class MainProgram {
++ {static} void main(String[])
+}
+
+interface ViewObserver {
+~ void onCalculate(String operation, double a, double b)
+~ void onClear()
+}
+
+class CalculatorViewImpl {
+~ void setObserver(ViewObserver)
+~ void updateResult(double result)
+~ void clearScreen()
+}
+
+' Реализация интерфейся
+ViewObserver <|.. CalculatorPresenter
+CalculatorView <|.. CalculatorViewImpl
+' Зависит от View или Model, Presenter может или нет ссылку на View или Model.  Агрегация.
+' uses это описание связи. Часто бывает глаголом "использует" реже словосочетанием
+CalculatorPresenter o-- "1" CalculatorView : uses
+' Если 1 то говорить что связь точно есть
+CalculatorPresenter o-- "1..1" CalculatorModel : uses
+' 1..1 говорит о диопозоне
+
+' Простая зависимость, для инициализации
+MainProgram ..> ViewObserver : initiates
+MainProgram ..> CalculatorViewImpl : creates
+MainProgram ..> CalculatorPresenter : creates
+
+' Ассоциация с мультипликатором (один ко многим или один к одному) линиия  помощью опредленных мультипликаторов
+' 0..1 может или не может иметь ссылку, 1 каждый ViewObserver должен быть ассоциирован только с одним  CalculatorView
+CalculatorView "0..1" -- "1" ViewObserver : updates
+@enduml
