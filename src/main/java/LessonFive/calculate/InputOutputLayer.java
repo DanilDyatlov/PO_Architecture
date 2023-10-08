@@ -3,8 +3,8 @@ package LessonFive.calculate;
 // Горизонтальные уровни архитектуры калькулятора
 
 // Уровень ввода и вывода
-class InputOutputLayer {
-    String getInput() {
+public class InputOutputLayer {
+    public String getInput() {
         // Чтение ввода пользователя
         return null;
     }
