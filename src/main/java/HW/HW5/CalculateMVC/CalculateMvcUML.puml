@@ -1,0 +1,56 @@
+@startuml
+class HW.HW5.CalculateMVC.Model.MultiplyOperation.MultiplyOperation {
+~ double firstArg
+~ double secondArg
++ double multiply()
+}
+class HW.HW5.CalculateMVC.View.ConsoleView {
+~ InputOutputLayer ioLayer
+~ CalculationLayer calcLayer
++ void runCalculator()
+}
+class HW.HW5.CalculateMVC.Model.SumOperation.SumOperation {
+~ double firstArg
+~ double secondArg
++ double sum()
+}
+interface HW.HW5.CalculateMVC.View.IView {
+~ void runCalculator()
+}
+class HW.HW5.CalculateMVC.Main {
++ {static} void main(String[])
+}
+class HW.HW5.CalculateMVC.Model.CalculationLayer {
++ double add(double,double)
++ double subtract(double,double)
++ double multiply(double,double)
++ double divide(double,double)
+}
+class HW.HW5.CalculateMVC.View.InputOutputLayer {
+~ String getInput()
+~ void displayOutput(String)
+}
+class HW.HW5.CalculateMVC.Model.DivideOperation.DivideOperation {
+~ double firstArg
+~ double secondArg
++ double divide()
+}
+class HW.HW5.CalculateMVC.View.InputSlice {
+~ String getInput()
+}
+class HW.HW5.CalculateMVC.Bd.DatabaseManagementSlice {
+~ void saveData(String)
+~ String fetchData()
+}
+class HW.HW5.CalculateMVC.Model.SubstractOperation.SubstractOperation {
+~ double firstArg
+~ double secondArg
++ double subtract()
+}
+class HW.HW5.CalculateMVC.View.OutputSlice {
+~ void displayOutput(String)
+}
+
+
+HW.HW5.CalculateMVC.View.IView <|.. HW.HW5.CalculateMVC.View.ConsoleView
+@enduml

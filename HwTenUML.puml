@@ -1,0 +1,52 @@
+@startuml
+class HW.HW10.ProductService {
++ ProductRepository productRepository
++ void addProductWithLogic(Product)
++ List<Product> getAllProducts()
+}
+class HW.HW10.Main {
++ {static} void main(String[])
+}
+class HW.HW10.ProductRepository {
+- List<Product> products
+- int nextId
++ Product getById(int)
++ List<Product> getAll()
++ void add(Product)
++ void update(Product)
++ void delete(int)
+}
+interface HW.HW10.ProductDao {
+~ Product getById(int)
+~ List<Product> getAll()
+~ void add(Product)
+~ void update(Product)
+~ void delete(int)
+}
+class HW.HW10.Product {
+- int id
+- String name
++ int getId()
++ String getName()
++ void setId(int)
+}
+class HW.HW10.UnitOfWork {
+- List<Product> products
++ List<Product> newProducts
+- List<Product> deletedProducts
++ void addNewProduct(Product)
++ void deleteProduct(Product)
++ void commit()
++ List<Product> getAllProducts()
+}
+
+
+HW.HW10.ProductDao <|.. HW.HW10.ProductRepository: Implementation
+HW.HW10.Product --> HW.HW10.ProductDao
+HW.HW10.ProductService --> HW.HW10.ProductRepository
+HW.HW10.UnitOfWork --> HW.HW10.Product
+
+HW.HW10.ProductDao --> HW.HW10.ProductRepository
+HW.HW10.ProductService <-- HW.HW10.ProductRepository
+HW.HW10.UnitOfWork <-- HW.HW10.ProductService
+@enduml
